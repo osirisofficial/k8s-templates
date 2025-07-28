@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-env
+  labels:
+    app: myapp
+spec:
+  containers:
+    - name: test-con1
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: config-map-volume # name of volume with attached configMap
+          mountPath: /etc/config # location to mount on pod
+          readOnly: true # access mode
+
+  volumes:
+    - name: config-map-volume
+      configMap:
+        name: configmap-example # name of config map to attach this volume

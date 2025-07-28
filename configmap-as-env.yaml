@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-env
+  labels:
+    app: myapp
+spec:
+  containers:
+    - name: test-con1
+      image: nginx
+      # 1. to use sepecifi pair from configmap as env
+      env:
+        - name: database-url #name of env variable
+          valueFrom:
+            configMapKeyRef:
+              name: configmap-example #name of config map
+              key: database_url # key of data in configmap
+
+      # 2. to use entir configmap as env
+      envFrom:
+        - configMapRef:
+            name: configmap-example #name of config map
+      ports:
+        - containerPort: 80
