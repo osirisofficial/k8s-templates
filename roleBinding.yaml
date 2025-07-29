@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+  - kind: User # Can be User, Group, or ServiceAccount
+    name: manas # The name of the user
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role # Can be Role or ClusterRole
+  name: pod-reader # Must match the name of the Role
+  apiGroup: rbac.authorization.k8s.io
