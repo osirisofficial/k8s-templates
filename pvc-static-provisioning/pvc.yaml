@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-static-claim
+spec:
+  storageClassName: standard # should match with PV's storage class
+  accessmodes:
+    - ReadWriteOnce # Must be compatible with the PV's access modes
+  resources:
+    requests:
+      storage: 500Mi # Requested storage capacity
+  # optional selector to bind with specific pv if multiple pv exists
+  selector:
+    matchlabels:
+      environment: production
