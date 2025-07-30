@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-dynamic-claim
+spec:
+  storageClassName: first-storageclass-aws
+  accessModes:
+    - readWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
