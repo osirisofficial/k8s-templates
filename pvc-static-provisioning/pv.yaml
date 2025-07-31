@@ -18,5 +18,5 @@ spec:
   storageClassName: standard # storage class this pv belongs to
   hostPath:
     path:
-      ./data # as we are creating static pv will use local disk storage
+      /root/kubernetes_content/data # as we are creating static pv will use local disk storage
       # on what directory data should be stored
