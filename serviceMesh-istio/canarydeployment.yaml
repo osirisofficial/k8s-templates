@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-gateway-canary-deployment
+spec:
+  hosts:
+    - reviews #when request comes on this clusterIP service
+  gateway:
+    - my-gateway # this will connect it gateway resource
+  http:
+    - route:
+        - destination:
+            host: reviews #foward traffic to same reviews service
+            subset: v1 # but forward it subset named v1 created using DestRule
+          weight: 90 # forward 90% traffic to v1
+        - destination:
+            host: reviews #foward traffic to same reviews service
+            subset: v2 # but forward it subset named v2 created using DestRule
+          weight: 10 # forward 90% traffic to v2
+
