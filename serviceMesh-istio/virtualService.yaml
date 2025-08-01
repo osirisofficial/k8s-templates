@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-gateway-route-traffic
+spec:
+  hosts:
+    - "*" # allow requests from all hosts
+    # - "main.com" allow request from this host
+  gateway:
+    - my-gateway # this will connect it gateway resource
+  http:
+    - match:
+        - uri:
+          prefix: /api # path based routing
+      route:
+        - destination:
+            - host: "clusterIp-name"
+              port:
+                number: "portnumber of clusterip"

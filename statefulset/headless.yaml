@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: headless
+  labels:
+    serv: headless
+spec:
+  clusterIP: none #headless service
+  selector:
+    app: mongodb # add this label to pods inside statefulset
+  ports:
+    - name: mongo
+      port: 80
